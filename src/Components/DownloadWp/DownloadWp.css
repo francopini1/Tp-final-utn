@@ -1,0 +1,17 @@
+.download-wp{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  min-height: 100vh;
+  text-align: center;
+  font-family: var(--segoe-ui);
+  font-weight: 400;
+}
+
+.download-wp__button{
+  padding: 1em 1.5em;
+  border-radius: 16px;
+  background-color: rgb(0, 121, 64);
+}

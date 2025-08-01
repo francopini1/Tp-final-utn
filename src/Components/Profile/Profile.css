@@ -1,0 +1,62 @@
+.profile{ 
+  min-height: 100vh;
+  padding: 1em;
+  background-color: var(--color-barra-aside);
+  font-family: var(--segoe-ui);
+} 
+
+.profile.profile--active{
+  display:block;
+  width: 400px;
+  padding: 0 20px;
+}
+.profile__article{
+  padding-top: 3rem;
+}
+.profile__header{
+  text-align: center;
+}
+
+.profile__img{
+  --size: 130px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile__tel{
+  color: #b1b1b1;
+}
+
+.profile__info{
+  padding-top: 30px;
+  border-bottom: 1px solid #424242;
+}
+
+.profile__info b{
+  color: #b1b1b1;
+}
+
+.profile__options{
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0  ;
+}
+
+
+.profile__options li{
+  margin-top: 19px;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.profile__options img{
+  display: inline-block;
+  padding-right: 12px;
+} 
+
+.profile__red{
+  color: #b81818;
+}

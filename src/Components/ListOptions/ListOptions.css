@@ -1,0 +1,25 @@
+.container-list-options{
+  display: flex; 
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  list-style-type: none;
+  gap: 12px;
+  padding: 0;
+}
+
+.container-list-options li{
+  padding: 6px 12px;
+  border: 1px solid #5e5e5e;
+  border-radius: 17px;
+  font-family: var(--segoe-ui);
+  cursor: pointer;
+  transition: background-color 0.15s ;
+}
+
+.container-list-options li:hover {
+  background-color: #232323; /* gris suave, podés ajustar */
+}
+
+.container-list-options--active{
+  background-color:#10362a;
+}

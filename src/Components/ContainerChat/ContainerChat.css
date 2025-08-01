@@ -1,0 +1,24 @@
+.container-chat{
+  /* flex:2; */
+  position: fixed;
+  left: 0;
+  width: 100%;
+  transform: translateX(100%);
+  transition: transform .3s ease-in-out;
+  background-color: #141414;
+}
+
+.container-chat-active{
+  transform: translateX(0);
+}
+@media screen and (min-width: 1200px) {
+
+  .container-chat{
+    position: relative;
+    transform: translateX(0)
+  }
+  
+  .container-chat-active{
+    transform: none;
+  }
+}

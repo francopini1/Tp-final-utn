@@ -1,0 +1,126 @@
+.container-aside{
+ /*  flex:1; */
+  display: flex;
+  border-right: 1px solid #5e5e5eb2;
+  width: 100vw;
+  background-color: #141414;
+}
+
+.container-aside__header{
+  margin-bottom: 1rem;
+} 
+
+.container-aside__header h2{
+  font-family: var(--segoe-ui);
+}
+
+.container-aside__article{
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 400px;
+  padding-right: 8px;
+}
+
+.container-aside__article::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+
+.container-aside__article::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 4px;
+  min-height: 10px;
+}
+
+.container-aside__article::-webkit-scrollbar-thumb:hover {
+  background:#ffffff;
+}
+
+/* Para Firefox */
+.container-aside__article {
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a2a transparent;
+}
+
+.input-search{
+  padding: 13px ;
+  padding-left: 33px;
+  width: 83%;
+  border-radius: 19px;
+  color: #fff;
+  background-color: var(--color-gris);
+  border: none;
+  outline: none;
+}
+
+.input-search::placeholder{
+  color: #fff;
+}
+
+.input-search:focus{
+  background-color: var(--color-barra-aside);
+  outline: 2px solid rgb(74, 197, 18);
+} 
+
+
+.container-aside__form{
+  position: relative;
+}
+
+.search{
+  position: absolute;
+  left: .7rem; 
+  top: .8rem;
+}
+
+.container-settings{
+  display: none;
+
+}
+
+.container-settings ul{
+  padding: 0;
+  text-align: center;
+  list-style-type: none;
+}
+
+.container-settings__icons{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 168px;
+}
+.franco-img{  
+  --size: 31px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+}
+
+.container-aside__users{
+  width: 100%;
+  padding-top: var(--pad-top);
+  padding-left: var(--pad-inline);
+  padding-right: var(--pad-inline);
+}
+
+.franco{
+  margin-top: 12px;
+}
+
+
+@media screen and (min-width: 1200px) {
+  .container-settings{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 48px;
+    padding: .8rem 0;
+    background-color: var(--color-barra-aside);
+  }
+
+  .container-aside{
+    width: 700px;
+  }
+}
