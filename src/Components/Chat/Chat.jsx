@@ -18,7 +18,33 @@ function Chat() {
 
   const [showSearchBar, setShowSearchBar] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const searchTimeoutRef = useRef(null); 
+  const searchTimeoutRef = useRef(null);
+
+  const [blueTildes, setBlueTildes] = useState({});
+
+  const handleDeleteMessage = (msgToDelete) => {
+    setUser((prevUser) => ({
+      ...prevUser,
+      messages: prevUser.messages.filter(
+        (msg) =>
+          msg.time + msg.message !== msgToDelete.time + msgToDelete.message
+      ),
+    }));
+    setUsers((prevUsers) =>
+      prevUsers.map((u) =>
+        u.id === idUser
+          ? {
+              ...u,
+              messages: u.messages.filter(
+                (msg) =>
+                  msg.time + msg.message !==
+                  msgToDelete.time + msgToDelete.message
+              ),
+            }
+          : u
+      )
+    );
+  };
 
   useEffect(() => {
     const user = filterUser(users, idUser);
@@ -38,7 +64,15 @@ function Chat() {
     if (refMessage.current) {
       const message = refMessage.current.value;
 
-      const nuevoMensaje = { id: 9999, message };
+      const nuevoMensaje = {
+        id: 9999,
+        message,
+        time: new Date().toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }),
+      };
 
       setUser((prevUser) => ({
         ...prevUser,
@@ -56,6 +90,13 @@ function Chat() {
         return updatedUsers;
       });
 
+      setTimeout(() => {
+        setBlueTildes((prev) => ({
+          ...prev,
+          [nuevoMensaje.time + nuevoMensaje.message]: true,
+        }));
+      }, 3000);
+
       setLoading(true);
 
       setTimeout(() => {
@@ -64,6 +105,11 @@ function Chat() {
           message:
             responseMessage[message] ||
             "Lo siento, no tengo respuesta  para eso 🤷‍♂️",
+          time: new Date().toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: false,
+          }),
         };
 
         setUser((prevUser) => ({
@@ -89,6 +135,13 @@ function Chat() {
           localStorage.setItem("users", JSON.stringify(updatedUsers));
           return updatedUsers;
         });
+
+        setTimeout(() => {
+          setBlueTildes((prev) => ({
+            ...prev,
+            [respuesta.time + respuesta.message]: true,
+          }));
+        }, 3000);
 
         setLoading(false);
       }, 4000);
@@ -173,22 +226,34 @@ function Chat() {
               <div
                 className={
                   user.id === message.idUser ? "text-left" : "text-right"
-                }>
+                }
+                style={{ position: "relative" }}
+                key={message.idUser + message.time + message.message}>
                 <p
-                  key={message.idUser}
                   className={
                     user.id === message.idUser
                       ? "chat-user__recipient"
                       : "chat-user__sender"
                   }>
+                  <button
+                    className="chat-user__delete-btn"
+                    onClick={() => handleDeleteMessage(message)}
+                    title="Eliminar mensaje"
+                    type="button">
+                    &times;
+                  </button>
                   {message.message}
+                  <span className="chat-user__time">{message.time}</span>
                   <img
                     src="/icons/tilde.svg"
                     alt="tilde"
                     className={
                       user.id === message.idUser
                         ? "chat-user__tilde-hidden"
-                        : " chat-user__tilde"
+                        : "chat-user__tilde" +
+                          (blueTildes[message.time + message.message]
+                            ? " chat-user__tilde--blue"
+                            : "")
                     }
                   />
                 </p>

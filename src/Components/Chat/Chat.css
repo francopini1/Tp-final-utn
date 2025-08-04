@@ -93,6 +93,16 @@
   background-color: var(--color-typing-message);
 }
 
+.chat-user__time {
+  margin-left: 8px;
+  font-size: 0.75em;
+  color: #b0b0b0;
+  vertical-align: middle;
+  /* Opcional: para que no se corte en móviles */
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
 .text-left{
   padding-left: var(--padding-chat);
   text-align: left;
@@ -135,7 +145,7 @@
 }
 
 .chat-user__tilde{
-   display: inline-block;
+  display: inline-block;
   margin-left: 6px;
   position: static;
   height: 16px;
@@ -149,9 +159,48 @@
 
 .chat-user__tilde--blue {
   filter: brightness(0) saturate(100%) invert(48%) sepia(99%) saturate(749%) hue-rotate(163deg) brightness(97%) contrast(101%);
-  /* O usa fill: #34b7f1; si es SVG */
 }
 
+.chat-user__delete-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 6px;
+  background: #444;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  opacity: 0.8;
+  z-index: 2;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.chat-user__delete-btn:hover,
+.chat-user__delete-btn:focus {
+  background: #e53935;
+  color: #fff;
+  outline: none;
+}
+
+.chat-user__delete-btn {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.text-left:hover .chat-user__delete-btn,
+.text-right:hover .chat-user__delete-btn {
+  opacity: 1;
+  pointer-events: auto;
+}
 .chat::placeholder{
   color: #fff;
 }
